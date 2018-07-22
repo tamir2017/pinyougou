@@ -17,7 +17,7 @@
 	
 	<!-- 页面的拦截规则  use-expressions:是否启动SPEL表达式默认为true-->
 	<http use-expressions="false">
-		<!-- 当前用户必须有ROLE_ADMIN的角色才可以访问根目录及所属子目录的资源 -->
+		<!-- 当前用户必须有ROLE_SELLER的角色才可以访问根目录及所属子目录的资源 -->
 		<intercept-url pattern="/**" access="ROLE_SELLER"/>
 		<!-- 开启表单登陆功能 -->
 		<form-login login-page="/shoplogin.html" default-target-url="/admin/index.html" authentication-failure-url="/shoplogin.html" always-use-default-target="true"/>
@@ -46,6 +46,7 @@
 	<dubbo:registry address="zookeeper://192.168.25.129:2181"/>
 	<dubbo:reference id="sellerService1" interface="com.pinyougou.sellergoods.service.SellerService" />
 	
+	<!-- 引用 bcrypt 加密算法 -->
 	<beans:bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></beans:bean>
 	
 	

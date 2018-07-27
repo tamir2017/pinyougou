@@ -99,6 +99,23 @@ public class ItemSearchServiceImpl implements ItemSearchService {
 				query.addFilterQuery(filterQuery);
 			}
 		}
+		//1.5 按价格分类过滤
+		if(!"".equals(searchMap.get("price"))){//如果用户选择了价格
+			String[] price=((String) searchMap.get("price")).split("-");// 格式 ：500-1000
+			if(!price[0].equals("0")){//最低价格不等于0
+				FilterQuery filterQuery=new SimpleFilterQuery();
+				Criteria filterCriteria=new Criteria("item_price").greaterThanEqual(price[0]);
+				filterQuery.addCriteria(filterCriteria);
+				query.addFilterQuery(filterQuery);
+			}
+			if(!price[1].equals("*")){//最高价格不等于*
+				FilterQuery filterQuery=new SimpleFilterQuery();
+				Criteria filterCriteria=new Criteria("item_price").lessThanEqual(price[1]);
+				filterQuery.addCriteria(filterCriteria);
+				query.addFilterQuery(filterQuery);
+			}
+			
+		}
 		
 		
 		

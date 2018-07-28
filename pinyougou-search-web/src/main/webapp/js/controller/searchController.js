@@ -1,7 +1,9 @@
-app.controller('searchController',function($scope,searchService){
+app.controller('searchController',function($scope,$location,searchService){
 	
 	//定义搜索对象的结构
-	$scope.searchMap={'keywords':'','category':'','brand':'','spec':{},'price':'','pageNo':1,'pageSize':40};
+	$scope.searchMap={'keywords':'','category':'','brand':'','spec':{},'price':'','pageNo':1,'pageSize':40,
+			'sort':'','sortField':''
+	};
 	
 	
 	//搜索
@@ -78,6 +80,28 @@ app.controller('searchController',function($scope,searchService){
 		$scope.search();//查询
 	}
 	
+	//设置排序规则
+	$scope.sortSearch=function(sortField,sort){
+		$scope.searchMap.sortField=sortField;	
+		$scope.searchMap.sort=sort;	
+		$scope.search();//查询
+	}
+
+	//判断关键字是不是品牌
+	$scope.keywordsIsBrand=function(){
+		for(var i=0;i<$scope.resultMap.brandList.length;i++){
+			if($scope.searchMap.keywords.indexOf($scope.resultMap.brandList[i].text)>=0){//如果包含
+				return true;
+			}			
+		}		
+		return false;
+	}
 	
+	//加载关键字
+	$scope.loadkeywords=function(){
+		$scope.searchMap.keywords=$location.search()['keywords'];
+		$scope.search();//查询
+	}
+
 	
 });

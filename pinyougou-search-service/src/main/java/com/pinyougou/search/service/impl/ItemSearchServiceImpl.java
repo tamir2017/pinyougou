@@ -8,6 +8,7 @@ import java.util.Map;
 import org.hamcrest.core.Is;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.data.solr.core.query.Criteria;
@@ -134,7 +135,20 @@ public class ItemSearchServiceImpl implements ItemSearchService {
 		query.setOffset((pageNo-1)*pageSize);//从第几条记录查询
 		query.setRows(pageSize);		
 
-		
+		//1.7 排序
+		String sortValue= (String) searchMap.get("sort");//ASC 升序  DESC 降序
+		String sortField= (String) searchMap.get("sortField");//排序字段
+		if(sortValue!=null && !sortValue.equals("")){  
+			if(sortValue.equals("ASC")){
+				Sort sort=new Sort(Sort.Direction.ASC, "item_"+sortField);
+				query.addSort(sort);
+			}
+			if(sortValue.equals("DESC")){		
+				Sort sort=new Sort(Sort.Direction.DESC, "item_"+sortField);
+				query.addSort(sort);
+			}			
+		}
+
 		
 	
 		
@@ -213,6 +227,23 @@ public class ItemSearchServiceImpl implements ItemSearchService {
 		}			
 		return map;
 	}
+
+	@Override
+	public void importList(List list) {
+		solrTemplate.saveBeans(list);	
+		solrTemplate.commit();
+	}
+
+	@Override
+	public void deleteByGoodsIds(List goodsIdList) {
+		System.out.println("删除商品ID"+goodsIdList);
+		Query query=new SimpleQuery();		
+		Criteria criteria=new Criteria("item_goodsid").in(goodsIdList);
+		query.addCriteria(criteria);
+		solrTemplate.delete(query);
+		solrTemplate.commit();
+	}
+
 
 	
 }

@@ -40,6 +40,11 @@ public class ItemSearchServiceImpl implements ItemSearchService {
 	@Override
 	public Map<String, Object> search(Map searchMap) {
 		Map map = new HashMap();
+		//空格处理
+		String keywords=(String)searchMap.get("keywords");
+		searchMap.put("keywords", keywords.replace(" ", ""));//关键字去掉空格
+		
+		
 		//1.查询列表
 		map.putAll(searchList(searchMap));
 		//2.分组查询商品分类列表
@@ -117,7 +122,21 @@ public class ItemSearchServiceImpl implements ItemSearchService {
 			
 		}
 		
+		//1.6 分页查询		
+		Integer pageNo= (Integer) searchMap.get("pageNo");//提取页码
+		if(pageNo==null){
+			pageNo=1;//默认第一页
+		}
+		Integer pageSize=(Integer) searchMap.get("pageSize");//每页记录数 
+		if(pageSize==null){
+			pageSize=20;//默认20
+		}
+		query.setOffset((pageNo-1)*pageSize);//从第几条记录查询
+		query.setRows(pageSize);		
+
 		
+		
+	
 		
 		//******************  获取高亮结果集   **************************
 		//高亮页对象
@@ -141,7 +160,9 @@ public class ItemSearchServiceImpl implements ItemSearchService {
 		}
 		
 		map.put("rows", page.getContent()); 
-		
+		map.put("totalPages", page.getTotalPages());//返回总页数
+		map.put("total", page.getTotalElements());//返回总记录数
+
 		return map;
 	}
 	

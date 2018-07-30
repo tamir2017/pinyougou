@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.pinyougou.page.service.ItemPageService;
 import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.pojo.TbItem;
 import com.pinyougou.pojogroup.Goods;
@@ -126,4 +127,23 @@ public class GoodsController {
 			return new Result(false, "修改状态失败");
 		}
 	}
+	
+	@Reference(timeout=40000)
+	private ItemPageService itemPageService;
+	
+	/**
+	 * 生成静态页（测试）
+	 * @param goodsId
+	 */
+	@RequestMapping("/genHtml")
+	public void genHtml(Long goodsId){
+		itemPageService.genItemHtml(goodsId);	
+	}
+
+	
+	
+	
+	
+	
+	
 }

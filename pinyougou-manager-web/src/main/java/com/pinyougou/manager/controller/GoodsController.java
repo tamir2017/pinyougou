@@ -115,11 +115,19 @@ public class GoodsController {
 	public Result updateStatus(Long[] ids, String status){
 		try {
 			goodsService.updateStatus(ids, status);
+			
 			if("1".equals(status)){//审核通过
+				//*****导入索引库
 				//得到需要导入的SKU列表
 				List<TbItem> itemList = goodsService.findItemListByGoodsIdandStatus(ids, status);
 				//导入到solr
 				itemSearchService.importList(itemList);
+				
+				//*****生成商品详情页
+				for(Long goodsId : ids){
+					itemPageService.genItemHtml(goodsId);
+				}
+				
 			}
 			return new Result(true, "修改状态成功"); 
 		} catch (Exception e) {

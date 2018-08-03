@@ -1,0 +1,17 @@
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:10:49 +0800] "GET /admin/index.html HTTP/1.1" 302 - http-bio-9101-exec-1 65
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:10:49 +0800] "GET /login.html HTTP/1.1" 304 - http-bio-9101-exec-7 5
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:10:49 +0800] "GET /assets/img/favicon.ico HTTP/1.1" 302 - http-bio-9101-exec-8 3
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:11:00 +0800] "POST /login HTTP/1.1" 302 - http-bio-9101-exec-9 6
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:11:00 +0800] "GET /admin/index.html HTTP/1.1" 200 22010 http-bio-9101-exec-10 4
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:11:00 +0800] "GET /plugins/jQueryUI/jquery-ui.min.js HTTP/1.1" 404 1017 http-bio-9101-exec-10 5
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:11:00 +0800] "GET /admin/home.html HTTP/1.1" 200 4468 http-bio-9101-exec-10 2
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:11:02 +0800] "GET /login/name.do HTTP/1.1" 200 21 http-bio-9101-exec-10 2174
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:11:03 +0800] "GET /admin/goods.html HTTP/1.1" 200 5763 http-bio-9101-exec-10 2
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:11:03 +0800] "POST /goods/search.do?page=1&rows=10 HTTP/1.1" 200 628 http-bio-9101-exec-3 136
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:11:03 +0800] "GET /itemCat/findAll.do HTTP/1.1" 200 70247 http-bio-9101-exec-10 149
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:11:03 +0800] "POST /goods/search.do?page=1&rows=10 HTTP/1.1" 200 628 http-bio-9101-exec-3 18
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:12:44 +0800] "GET /goods/delete.do?ids=149187842867967 HTTP/1.1" 200 41 http-bio-9101-exec-1 262
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:12:44 +0800] "POST /goods/search.do?page=1&rows=10 HTTP/1.1" 200 657 http-bio-9101-exec-1 15
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:12:51 +0800] "GET /goods/delete.do?ids=149187842867975 HTTP/1.1" 200 41 http-bio-9101-exec-1 30
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:12:51 +0800] "POST /goods/search.do?page=1&rows=10 HTTP/1.1" 200 338 http-bio-9101-exec-1 12
+0:0:0:0:0:0:0:1 - - [02/Aug/2018:00:12:51 +0800] "POST /goods/search.do?page=1&rows=10 HTTP/1.1" 200 338 http-bio-9101-exec-1 13

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -78,7 +79,12 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping("/addGoodsToCartList")
+	@CrossOrigin(origins="http://localhost:9105")
 	public Result addGoodsToCartList(Long itemId,Integer num){
+		//使用CORS实现跨域请求
+		//response.setHeader("Access-Control-Allow-Origin", "http://localhost:9105");//可以访问的域
+		//response.setHeader("Access-Control-Allow-Credentials", "true");//可以使用cookie
+
 		//当前登录人帐号
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		System.out.println("当前登录人: "+name);

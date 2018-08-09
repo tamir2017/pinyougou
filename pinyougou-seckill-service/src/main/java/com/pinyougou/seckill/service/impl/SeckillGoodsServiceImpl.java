@@ -122,6 +122,8 @@ public class SeckillGoodsServiceImpl implements SeckillGoodsService {
 		
 		List<TbSeckillGoods> seckillGoodsList =  redisTemplate.boundHashOps("seckillGoods").values();
 		if(seckillGoodsList == null || seckillGoodsList.size() == 0){
+			//使用任务调度，每分钟执行一次
+			/*
 			TbSeckillGoodsExample example = new TbSeckillGoodsExample();
 			Criteria criteria = example.createCriteria();
 			criteria.andStatusEqualTo("1");//审核通过的商品
@@ -133,6 +135,7 @@ public class SeckillGoodsServiceImpl implements SeckillGoodsService {
 			for(TbSeckillGoods seckillGoods:seckillGoodsList){
 				redisTemplate.boundHashOps("seckillGoods").put(seckillGoods.getId(), seckillGoods);
 			}
+			*/
 			System.out.println("从数据库中读取数据，并且装入缓存...");
 		}else{
 			System.out.println("从缓存中读取数据...");

@@ -166,13 +166,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private Destination smsDestination;
 	
-	/*
+	
 	@Value("${template_code}")
 	private String template_code;
 	
 	@Value("${sign_name}")
 	private String sign_name;
-    */
+    
 	
 	@Override
 	public void createSmsCode(final String phone) {
@@ -182,7 +182,7 @@ public class UserServiceImpl implements UserService {
 		//2.将验证码放入redis中
 		redisTemplate.boundHashOps("smscode").put(phone, smscode);
 		//3.将短信内容发送给activeMQ
-		/*
+		
 		jmsTemplate.send(smsDestination, new MessageCreator() {
 			
 			@Override
@@ -198,7 +198,7 @@ public class UserServiceImpl implements UserService {
 
 			}
 		});
-		*/
+		
 	}
     
 	@Override

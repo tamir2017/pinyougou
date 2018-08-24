@@ -8,6 +8,9 @@
 	</parent>
 	<artifactId>pinyougou-search-service</artifactId>
 	<packaging>war</packaging>
+	
+
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -108,5 +111,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
+
+		
 	</build>
 </project>

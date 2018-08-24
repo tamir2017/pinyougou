@@ -32,7 +32,6 @@
 
 	<!-- 引用dubbo 服务 -->
 	<dubbo:application name="pinyougou-shop-web" />
-	
 	<dubbo:annotation package="com.pinyougou.shop.controller" />  	
 
 </beans>
